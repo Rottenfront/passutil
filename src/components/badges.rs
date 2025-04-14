@@ -34,10 +34,9 @@ fn draw_common_badges(
         let mut x = x0;
         for badge in row {
             let image = badge.get_image();
-            let Ok(image) = image else {
-                continue;
+            if let Ok(image) = image {
+                draw_image(rc, image, Rect::from_origin_size((x, y), size))?;
             };
-            draw_image(rc, image, Rect::from_origin_size((x, y), size))?;
 
             x += dx;
         }
